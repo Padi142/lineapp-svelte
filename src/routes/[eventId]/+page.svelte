@@ -1,0 +1,44 @@
+<script lang="ts">
+	import { format } from 'date-fns';
+	import type { PageData } from './$types';
+	import ArtistBubbles from '../../components/ArtistBubbles.svelte';
+
+	export let data: PageData;
+
+	const startDate = Date.parse(data.event.start_time);
+</script>
+
+<div class="w-full h-full items-center justify-center p-6">
+	<div class="flex flex-row desktop:w-full items-center justify-center">
+		<img
+			class="h-auto object-cover desktop:max-w-lg w-full rounded-lg drop-shadow-xl"
+			src={data.event.event_logo}
+			alt={data.event.event_name}
+		/>
+	</div>
+
+	<h1 class="text-6xl mb-4 text-center shadow-sm">{data.event.event_name}</h1>
+	<div class="flex flex-col w-full items-center justify-center">
+		<progress
+			class="progress progress-secondary desktop:w-96 w-48 shadow-md"
+			value="100"
+			max="100"
+		/>
+		<h class="text-center text-white font-medium text-2xl py-2"
+			>{format(startDate, 'dd-MM-yyyy HH:mm')}</h
+		>
+	</div>
+	<div class="w-full flex flex-col justify-center items-center">
+		<div
+			class="flex flex-col desktop:w-full w-lg items-center justify-center bg-zinc-900 rounded-md shadow-xl p-2"
+		>
+			<h class="text-center text-sm" style="white-space: pre-line">
+				{data.event.description}
+			</h>
+		</div>
+		<div class="flex flex-row w-full items-center justify-center my-2">
+			<div class="w-1/2 bg-purple-600 h-24 rounded-md drop-shadow-lg mr-1" />
+			<ArtistBubbles artists={data.artists} />
+		</div>
+	</div>
+</div>
