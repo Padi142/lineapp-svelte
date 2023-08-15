@@ -2,6 +2,7 @@
 	import { format } from 'date-fns';
 	import type { PageData } from './$types';
 	import ArtistBubbles from '../../components/ArtistBubbles.svelte';
+	import EventInfoButtonSmall from '../../components/EventInfoButtonSmall.svelte';
 
 	export let data: PageData;
 
@@ -37,7 +38,16 @@
 			</h>
 		</div>
 		<div class="flex flex-row w-full items-center justify-center my-2">
-			<div class="w-1/2 bg-purple-600 h-24 rounded-md drop-shadow-lg mr-1" />
+			<EventInfoButtonSmall
+				text={'Ig'}
+				icon="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-white-glyph-900x900.png"
+				link={data.event.event_instagram}
+			/>
+			<EventInfoButtonSmall
+				text={'Buy tix!! :3'}
+				icon="https://icon-library.com/images/ticket-icon-png/ticket-icon-png-12.jpg"
+				link={data.event.tickets_url}
+			/>
 			<ArtistBubbles artists={data.artists} />
 		</div>
 	</div>
