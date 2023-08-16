@@ -17,6 +17,16 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{data.event.event_name}</title>
+	<meta
+		name="twitter:description"
+		content="Come and check out is awesome event that is happening soon!"
+	/>
+	<meta name="twitter:image" content={data.event.event_logo} />
+	<meta name="twitter:card" content="summary_large_image" />
+</svelte:head>
+
 <div class="w-full h-full items-center justify-center p-6">
 	<div class="flex flex-row desktop:w-full items-center justify-center">
 		<img
