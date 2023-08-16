@@ -19,6 +19,17 @@
 
 <svelte:head>
 	<title>{data.event.event_name}</title>
+
+	<meta property="og:title" content={data.event.event_name} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://lineup.krejzac.dev" />
+	<meta property="og:image" content={data.event.event_logo} />
+	<meta
+		property="og:description"
+		content="Come and check out is awesome event that is happening soon!"
+	/>
+
+	<meta name="twitter:title" content={data.event.event_name} />
 	<meta
 		name="twitter:description"
 		content="Come and check out is awesome event that is happening soon!"
