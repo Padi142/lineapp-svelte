@@ -44,15 +44,19 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div on:click={changeChosenArtist} class="avatar">
-				<div class="w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+				<div
+					class="desktop:w-36 w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+				>
 					<img src={chosenArtist.artist_photo} alt={chosenArtist.artist_name} />
 				</div>
 			</div>
 			<div class="w-full flex flex-col">
-				<div class="w-full text-center text-4xl text-white font-semibold shadow-md">
+				<div
+					class="w-full text-center desktop:text-6xl text-4xl text-white font-semibold shadow-md"
+				>
 					<h1>{chosenArtist.artist_name}</h1>
 				</div>
-				<div class="w-full flex flex-row items-center justify-center mt-4">
+				<div class="w-full flex flex-row items-center justify-center desktop:mt-8 mt-4">
 					<InstagramIcon instagramLink={chosenArtist.instagram_link} />
 					<SpotifyButton spotifyLink={chosenArtist.spotify_link} />
 					<AppleMusicButton appleMusicLink={chosenArtist.apple_link} />

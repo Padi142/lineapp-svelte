@@ -12,7 +12,7 @@
 
 <button on:click={handleClick}>
 	<div class="avatar mx-2">
-		<div class="desktop:w-24 w-8 rounded">
+		<div class="desktop:w-10 w-8 rounded">
 			<SpotifyIcon />
 		</div>
 	</div>
