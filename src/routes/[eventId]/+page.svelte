@@ -7,7 +7,7 @@
 
 	export let data: PageData;
 
-	let lineupBig = false;
+	let lineupBig = true;
 
 	const startDate = Date.parse(data.event.start_time);
 
@@ -24,57 +24,66 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://lineup.krejzac.dev" />
 	<meta property="og:image" content={data.event.event_logo} />
-	<meta
-		property="og:description"
-		content="Come and check out is awesome event that is happening soon!"
-	/>
+	<meta property="og:description" content={data.event.description.slice(0, 200)} />
 
 	<meta name="twitter:title" content={data.event.event_name} />
-	<meta
-		name="twitter:description"
-		content="Come and check out is awesome event that is happening soon!"
-	/>
+	<meta name="twitter:description" content={data.event.description.slice(0, 200)} />
 	<meta name="twitter:image" content={data.event.event_logo} />
 	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
-<div class="w-full h-full items-center justify-center p-6">
-	<div class="flex flex-row desktop:w-full items-center justify-center">
-		<img
-			class="h-auto object-cover desktop:max-w-lg w-full rounded-lg drop-shadow-xl"
-			src={data.event.event_logo}
-			alt={data.event.event_name}
-		/>
-	</div>
+<div class="w-full h-full flex flex-col items-center justify-center">
+	<div class="desktop:w-1/3 w-full h-full flex flex-col items-center justify-center p-6">
+		<div class="flex flex-row desktop:w-full items-center justify-center">
+			<img
+				class="h-auto object-cover desktop:max-w-lg w-full rounded-lg drop-shadow-xl"
+				src={data.event.event_logo}
+				alt={data.event.event_name}
+			/>
+		</div>
 
-	<h1 class="text-6xl mb-4 text-center shadow-sm">{data.event.event_name}</h1>
-	<div class="flex flex-col w-full items-center justify-center">
-		<progress
-			class="progress progress-secondary desktop:w-96 w-48 shadow-md"
-			value="100"
-			max="100"
-		/>
-		<h class="text-center text-white font-medium text-2xl py-2"
-			>{format(startDate, 'dd-MM-yyyy HH:mm')}</h
-		>
-	</div>
-	<div class="w-full flex flex-col justify-center items-center">
-		<div
-			class="flex flex-col desktop:w-full w-lg items-center justify-center bg-zinc-900 rounded-md shadow-xl p-2"
-		>
-			<h class="text-center text-sm" style="white-space: pre-line">
-				{data.event.description}
-			</h>
+		<h1 class="text-6xl mb-4 text-center shadow-sm">{data.event.event_name}</h1>
+		<div class="flex flex-col w-full items-center justify-center">
+			<progress
+				class="progress progress-secondary desktop:w-96 w-48 shadow-md"
+				value="100"
+				max="100"
+			/>
+			<h class="text-center text-white font-medium text-2xl py-2"
+				>{format(startDate, 'dd-MM-yyyy HH:mm')}</h
+			>
 		</div>
-		<div class="w-full flex flex-col items-end mt-2">
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			<ReloadIcon on:click={changeLineupSize} />
-		</div>
-		{#if lineupBig}
-			<div class="flex flex-col w-full items-center justify-center my-2">
-				<ArtistBubbles artists={data.artists} isBig={lineupBig} />
-				<div class="flex flex-row w-full items-center justify-center desktop:m-2 m-6">
+		<div class="w-full flex flex-col justify-center items-center">
+			<div
+				class="flex flex-col desktop:w-full w-lg items-center justify-center bg-zinc-900 rounded-md shadow-xl p-2"
+			>
+				<h class="text-center text-sm" style="white-space: pre-line">
+					{data.event.description}
+				</h>
+			</div>
+			<div class="w-full flex flex-col items-end mt-2">
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
+				<ReloadIcon on:click={changeLineupSize} />
+			</div>
+			{#if lineupBig}
+				<div class="flex flex-col w-full items-center justify-center my-2">
+					<ArtistBubbles artists={data.artists} isBig={lineupBig} eventId={data.event.event_uid} />
+					<div class="flex flex-row w-full items-center justify-center desktop:m-2 m-6">
+						<EventInfoButtonSmall
+							text={'Ig'}
+							icon="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-white-glyph-900x900.png"
+							link={data.event.event_instagram}
+						/>
+						<EventInfoButtonSmall
+							text={'Buy tix!! :3'}
+							icon="https://icon-library.com/images/ticket-icon-png/ticket-icon-png-12.jpg"
+							link={data.event.tickets_url}
+						/>
+					</div>
+				</div>
+			{:else}
+				<div class="flex flex-row w-full items-center justify-center my-2">
 					<EventInfoButtonSmall
 						text={'Ig'}
 						icon="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-white-glyph-900x900.png"
@@ -85,22 +94,9 @@
 						icon="https://icon-library.com/images/ticket-icon-png/ticket-icon-png-12.jpg"
 						link={data.event.tickets_url}
 					/>
+					<ArtistBubbles artists={data.artists} isBig={lineupBig} eventId={data.event.event_uid} />
 				</div>
-			</div>
-		{:else}
-			<div class="flex flex-row w-full items-center justify-center my-2">
-				<EventInfoButtonSmall
-					text={'Ig'}
-					icon="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-white-glyph-900x900.png"
-					link={data.event.event_instagram}
-				/>
-				<EventInfoButtonSmall
-					text={'Buy tix!! :3'}
-					icon="https://icon-library.com/images/ticket-icon-png/ticket-icon-png-12.jpg"
-					link={data.event.tickets_url}
-				/>
-				<ArtistBubbles artists={data.artists} isBig={lineupBig} />
-			</div>
-		{/if}
+			{/if}
+		</div>
 	</div>
 </div>

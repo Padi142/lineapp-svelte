@@ -1,8 +1,7 @@
 import { API_URL } from '$env/static/private';
-import request from '../../functions/request';
-import { shuffleArtists } from '../../functions/shuffle';
-import type { ArtistType } from '../../types/artist_type';
-import type { EventType } from '../../types/event_type';
+import request from '../../../functions/request';
+import type { ArtistType } from '../../../types/artist_type';
+import type { EventType } from '../../../types/event_type';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params }) => {
@@ -23,5 +22,5 @@ const fetchLineup = async (eventId: string): Promise<Array<ArtistType>> => {
 		API_URL + 'event/artists/' + eventId
 	);
 
-	return shuffleArtists(result.artists);
+	return result.artists;
 };
