@@ -5,18 +5,21 @@
 	import InstagramIcon from '../../../components/icons/InstagramIcon.svelte';
 	import SpotifyButton from '../../../components/icons/SpotifyButton.svelte';
 	import { shuffleArtists } from '../../../functions/shuffle';
+	import type { ArtistType } from '../../../types/artist_type';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
-	let chosenArtist = shuffleArtists(data.artists)[0];
+	let chosenArtist = data.artists[0];
 
-	function changeChosenArtist() {
-		chosenArtist = shuffleArtists(data.artists)[0];
+	function changeChosenArtist(artists: ArtistType) {
+		chosenArtist = artists;
 	}
 
 	function goBack() {
-		window.location.href = window.location.href.split('lineup')[0];
+		goto(`/${data.event.event_uid}`);
+
+		// window.location.href = window.location.href.split('lineup')[0];
 	}
 </script>
 
@@ -43,11 +46,48 @@
 		<div class="w-full flex flex-row items-center justify-center">
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			<div on:click={changeChosenArtist} class="avatar">
-				<div
-					class="desktop:w-36 w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
-				>
-					<img src={chosenArtist.artist_photo} alt={chosenArtist.artist_name} />
+			<div class="drawer desktop:w-36 w-28">
+				<input id="artist-drawer" type="checkbox" class="drawer-toggle" />
+				<label for="artist-drawer" class="avatar drawer-button">
+					<div
+						class="desktop:w-36 w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+					>
+						<img src={chosenArtist.artist_photo} alt={chosenArtist.artist_name} />
+					</div>
+				</label>
+				<!-- drawer -->
+				<div class="drawer-side">
+					<label for="artist-drawer" class="drawer-overlay" />
+					<ul
+						class="menu p-4 w-36 h-full bg-base-200 flex flex-col items-center justify-start overflow-y-scroll"
+					>
+						<div class="flex relative h-full w-full items-center justify-start">
+							<!-- <div class="transform absolute flex w-full h-full items-center justify-center">
+								<div class="bg h-full w-1 bg-fuchsia-600 rounded-lg" />
+							</div> -->
+							<div class="transform absolute w-full h-full">
+								{#each data.artists as artist}
+									<div class="my-8 flex flex-col items-center justify-center">
+										<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+										<label
+											on:click={() => changeChosenArtist(artist)}
+											for="artist-drawer"
+											class="avatar drawer-button"
+										>
+											<div
+												class="desktop:w-20 w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+											>
+												<img src={artist.artist_photo} alt={artist.artist_name} />
+											</div>
+										</label>
+										<h1 class="text-center">
+											{artist.artist_name}
+										</h1>
+									</div>
+								{/each}
+							</div>
+						</div>
+					</ul>
 				</div>
 			</div>
 			<div class="w-full flex flex-col">

@@ -13,7 +13,6 @@
 
 	function changeLineupSize() {
 		lineupBig = !lineupBig;
-		console.log(lineupBig);
 	}
 </script>
 
@@ -90,7 +89,7 @@
 						link={data.event.event_instagram}
 					/>
 					<EventInfoButtonSmall
-						text={'Buy tix!! :3'}
+						text={'Buy tix!:3'}
 						icon="https://icon-library.com/images/ticket-icon-png/ticket-icon-png-12.jpg"
 						link={data.event.tickets_url}
 					/>
