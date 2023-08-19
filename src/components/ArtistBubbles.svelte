@@ -33,11 +33,12 @@
 			<div
 				class="flex flex-row items-start justify-center w-full h-full transform transition-all absolute"
 			>
-				<ArtistBubble artist={artists[0]} artistClass={artistBigStyles[0]} />
-				<ArtistBubble artist={artists[1]} artistClass={artistBigStyles[1]} />
-				<div class="desktop:mx-14 mx-6" />
-				<ArtistBubble artist={artists[2]} artistClass={artistBigStyles[2]} />
-				<ArtistBubble artist={artists[3]} artistClass={artistBigStyles[3]} />
+				{#each artists.slice(0, 4) as artist, i}
+					<ArtistBubble {artist} artistClass={artistBigStyles[i]} />
+					{#if i === Math.floor(artists.slice(0, 4).length / 2) - 1}
+						<div class="desktop:mx-14 mx-6" />
+					{/if}
+				{/each}
 			</div>
 			<button
 				on:click={goToLineup}
@@ -50,11 +51,16 @@
 		<div class="stack w-full h-full items-center justify-center mt-2">
 			<button on:click={goToLineup} class="btn btn-primary desktop:w-20 w-16">Lineup</button>
 			<div class="flex flex-row items-start justify-center w-full h-full">
-				<ArtistBubble artist={artists[0]} artistClass={artistSmallStyles[0]} />
-				<ArtistBubble artist={artists[1]} artistClass={artistSmallStyles[1]} />
-				<div class="desktop:mx-2" />
-				<ArtistBubble artist={artists[2]} artistClass={artistSmallStyles[2]} />
-				<ArtistBubble artist={artists[3]} artistClass={artistSmallStyles[3]} />
+				<div>
+					{#each artists.slice(0, 4) as artist, i}
+						<div>
+							<ArtistBubble {artist} artistClass={artistSmallStyles[i]} />
+							{#if i == Math.floor(artists.length / 2)}
+								<div class="desktop:mx-14 mx-6" />
+							{/if}
+						</div>
+					{/each}
+				</div>
 			</div>
 		</div>
 	</div>

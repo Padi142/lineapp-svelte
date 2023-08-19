@@ -23,10 +23,10 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://lineup.krejzac.dev" />
 	<meta property="og:image" content={data.event.event_logo} />
-	<meta property="og:description" content={data.event.description.slice(0, 200)} />
+	<meta property="og:description" content={data.event.description.slice(0, 300)} />
 
 	<meta name="twitter:title" content={data.event.event_name} />
-	<meta name="twitter:description" content={data.event.description.slice(0, 200)} />
+	<meta name="twitter:description" content={data.event.description.slice(0, 300)} />
 	<meta name="twitter:image" content={data.event.event_logo} />
 	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
@@ -49,7 +49,7 @@
 				max="100"
 			/>
 			<h class="text-center text-white font-medium text-2xl py-2"
-				>{format(startDate, 'dd-MM-yyyy HH:mm')}</h
+				>{format(startDate, 'dd. MM. yyyy - HH:mm')}</h
 			>
 		</div>
 		<div class="w-full flex flex-col justify-center items-center">

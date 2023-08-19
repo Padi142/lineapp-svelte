@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { format } from 'date-fns';
 	import AppleMusicButton from '../../../components/icons/AppleMusicButton.svelte';
 	import BackButton from '../../../components/icons/BackButton.svelte';
 	import InstagramIcon from '../../../components/icons/InstagramIcon.svelte';
 	import SpotifyButton from '../../../components/icons/SpotifyButton.svelte';
-	import { shuffleArtists } from '../../../functions/shuffle';
 	import type { ArtistType } from '../../../types/artist_type';
 	import type { PageData } from './$types';
+	import LineupHeader from './components/LineupHeader.svelte';
 
 	export let data: PageData;
 
@@ -18,8 +19,6 @@
 
 	function goBack() {
 		goto(`/${data.event.event_uid}`);
-
-		// window.location.href = window.location.href.split('lineup')[0];
 	}
 </script>
 
@@ -30,10 +29,10 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://lineup.krejzac.dev" />
 	<meta property="og:image" content={data.event.event_logo} />
-	<meta property="og:description" content={data.event.description.slice(0, 200)} />
+	<meta property="og:description" content={data.event.description.slice(0, 300)} />
 
 	<meta name="twitter:title" content={data.event.event_name} />
-	<meta name="twitter:description" content={data.event.description.slice(0, 200)} />
+	<meta name="twitter:description" content={data.event.description.slice(0, 300)} />
 	<meta name="twitter:image" content={data.event.event_logo} />
 	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
@@ -44,52 +43,7 @@
 			<BackButton on:click={goBack} />
 		</div>
 		<div class="w-full flex flex-row items-center justify-center">
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			<div class="drawer desktop:w-36 w-28">
-				<input id="artist-drawer" type="checkbox" class="drawer-toggle" />
-				<label for="artist-drawer" class="avatar drawer-button">
-					<div
-						class="desktop:w-36 w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
-					>
-						<img src={chosenArtist.artist_photo} alt={chosenArtist.artist_name} />
-					</div>
-				</label>
-				<!-- drawer -->
-				<div class="drawer-side">
-					<label for="artist-drawer" class="drawer-overlay" />
-					<ul
-						class="menu p-4 w-36 h-full bg-base-200 flex flex-col items-center justify-start overflow-y-scroll"
-					>
-						<div class="flex relative h-full w-full items-center justify-start">
-							<!-- <div class="transform absolute flex w-full h-full items-center justify-center">
-								<div class="bg h-full w-1 bg-fuchsia-600 rounded-lg" />
-							</div> -->
-							<div class="transform absolute w-full h-full">
-								{#each data.artists as artist}
-									<div class="my-8 flex flex-col items-center justify-center">
-										<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-										<label
-											on:click={() => changeChosenArtist(artist)}
-											for="artist-drawer"
-											class="avatar drawer-button"
-										>
-											<div
-												class="desktop:w-20 w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
-											>
-												<img src={artist.artist_photo} alt={artist.artist_name} />
-											</div>
-										</label>
-										<h1 class="text-center">
-											{artist.artist_name}
-										</h1>
-									</div>
-								{/each}
-							</div>
-						</div>
-					</ul>
-				</div>
-			</div>
+			<LineupHeader artists={data.artists} {chosenArtist} {changeChosenArtist} />
 			<div class="w-full flex flex-col">
 				<div
 					class="w-full text-center desktop:text-6xl text-4xl text-white font-semibold shadow-md"
@@ -103,8 +57,16 @@
 				</div>
 			</div>
 		</div>
+		<div>
+			<div class=" h-1 bg-fuchsia-600 rounded-lg mt-8" />
+			<h1 class="text-4xl text-white">
+				{format(Date.parse(chosenArtist.start_time), 'HH:mm') +
+					' - ' +
+					format(Date.parse(chosenArtist.end_time), 'HH:mm')}
+			</h1>
+		</div>
 		<div
-			class="flex flex-col desktop:w-full w-lg items-center justify-center bg-zinc-900 rounded-md shadow-xl p-2 mt-8"
+			class="flex flex-col desktop:w-full w-lg items-center justify-center bg-zinc-900 rounded-md shadow-xl p-2 mt-4"
 		>
 			<h class="text-center text-sm" style="white-space: pre-line">
 				{chosenArtist.artist_description}
