@@ -105,9 +105,6 @@
 						artist={data.artists[chosenArtistIndex - 1]}
 						changeChosenArtist={() => changeChosenArtist(data.artists[chosenArtistIndex - 1])}
 					/>
-					<h1 class="mt-2">
-						{data.artists[chosenArtistIndex - 1].artist_name}
-					</h1>
 				</div>
 			{/if}
 
@@ -126,9 +123,6 @@
 						changeChosenArtist={() => changeChosenArtist(data.artists[chosenArtistIndex + 1])}
 						artist={data.artists[chosenArtistIndex + 1]}
 					/>
-					<h1 class="mt-2">
-						{data.artists[chosenArtistIndex + 1].artist_name}
-					</h1>
 				</div>
 			{/if}
 		</div>
