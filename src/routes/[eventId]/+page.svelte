@@ -60,11 +60,11 @@
 					{data.event.description}
 				</h>
 			</div>
-			<div class="w-full flex flex-col items-end mt-2">
+			<!-- <div class="w-full flex flex-col items-end mt-2">
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<ReloadIcon on:click={changeLineupSize} />
-			</div>
+			</div> -->
 			{#if lineupBig}
 				<div class="flex flex-col w-full items-center justify-center my-2">
 					<ArtistBubbles artists={data.artists} isBig={lineupBig} eventId={data.event.event_uid} />
