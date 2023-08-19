@@ -84,7 +84,7 @@
 				<div />
 			{/if}
 			{#if chosenArtistIndex !== data.artists.length - 1}
-				<h1 class="mb-2 w-32 text-center">Upcomming</h1>
+				<h1 class="mb-2 w-32 text-center">Upcoming</h1>
 			{:else}
 				<div />
 			{/if}
