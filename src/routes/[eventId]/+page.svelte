@@ -41,8 +41,8 @@
 			/>
 		</div>
 
-		<h1 class="text-6xl mb-4 text-center shadow-sm">{data.event.event_name}</h1>
-		<div class="flex flex-col w-full items-center justify-center">
+		<h1 class="text-6xl mt-2 mb-4 text-center shadow-sm">{data.event.event_name}</h1>
+		<div class="flex flex-col w-full items-center justify-center mt-6">
 			<progress
 				class="progress progress-secondary desktop:w-96 w-48 shadow-md"
 				value="100"
@@ -52,7 +52,7 @@
 				>{format(startDate, 'dd. MM. yyyy - HH:mm')}</h
 			>
 		</div>
-		<div class="w-full flex flex-col justify-center items-center">
+		<div class="w-full flex flex-col justify-center items-center mt-4">
 			<div
 				class="flex flex-col desktop:w-full w-lg items-center justify-center bg-zinc-900 rounded-md shadow-xl p-2"
 			>
@@ -62,13 +62,13 @@
 			</div>
 			<!-- <div class="w-full flex flex-col items-end mt-2">
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<!-- svelte-ignore a11y-no-static-element-interactions -->
-				<ReloadIcon on:click={changeLineupSize} />
-			</div> -->
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
+			<!-- <ReloadIcon on:click={changeLineupSize} />
+			</div>  -->
 			{#if lineupBig}
-				<div class="flex flex-col w-full items-center justify-center my-2">
+				<div class="flex flex-col w-full items-center justify-center my-2 mt-6">
 					<ArtistBubbles artists={data.artists} isBig={lineupBig} eventId={data.event.event_uid} />
-					<div class="flex flex-row w-full items-center justify-center desktop:m-2 m-6">
+					<div class="flex flex-row w-full items-center justify-center desktop:m-2 m-6 mt-8">
 						<EventInfoButtonSmall
 							text={'Ig'}
 							icon="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-white-glyph-900x900.png"
@@ -82,7 +82,7 @@
 					</div>
 				</div>
 			{:else}
-				<div class="flex flex-row w-full items-center justify-center my-2">
+				<div class="flex flex-row w-full items-center justify-center my-2 mt-2">
 					<EventInfoButtonSmall
 						text={'Ig'}
 						icon="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-white-glyph-900x900.png"
@@ -96,6 +96,7 @@
 					<ArtistBubbles artists={data.artists} isBig={lineupBig} eventId={data.event.event_uid} />
 				</div>
 			{/if}
+			<div class="mb-10" />
 		</div>
 	</div>
 </div>
