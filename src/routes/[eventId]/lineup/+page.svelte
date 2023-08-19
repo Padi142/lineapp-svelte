@@ -8,13 +8,18 @@
 	import type { ArtistType } from '../../../types/artist_type';
 	import type { PageData } from './$types';
 	import LineupHeader from './components/LineupHeader.svelte';
+	import ArtistBubble from '../../../components/ArtistBubble.svelte';
+	import BigArtistBubble from './components/BigArtistBubble.svelte';
 
 	export let data: PageData;
 
 	let chosenArtist = data.artists[0];
+	let chosenArtistIndex = 0;
 
-	function changeChosenArtist(artists: ArtistType) {
-		chosenArtist = artists;
+	function changeChosenArtist(artist: ArtistType) {
+		chosenArtist = artist;
+		chosenArtistIndex = data.artists.indexOf(artist);
+		console.log(chosenArtistIndex);
 	}
 
 	function goBack() {
@@ -46,7 +51,7 @@
 			<LineupHeader artists={data.artists} {chosenArtist} {changeChosenArtist} />
 			<div class="w-full flex flex-col">
 				<div
-					class="w-full text-center desktop:text-6xl text-4xl text-white font-semibold shadow-md"
+					class="w-full text-center desktop:text-6xl text-2xl text-white font-semibold shadow-md"
 				>
 					<h1>{chosenArtist.artist_name}</h1>
 				</div>
@@ -68,9 +73,64 @@
 		<div
 			class="flex flex-col desktop:w-full w-lg items-center justify-center bg-zinc-900 rounded-md shadow-xl p-2 mt-4"
 		>
-			<h class="text-center text-sm" style="white-space: pre-line">
+			<h class="text-center text-sm w-full" style="white-space: pre-line">
 				{chosenArtist.artist_description}
 			</h>
+		</div>
+		<div class="w-full flex flex-row items-center justify-between mt-24">
+			{#if chosenArtistIndex !== 0}
+				<h1 class="mb-2 w-32 text-center">Previous</h1>
+			{:else}
+				<div />
+			{/if}
+			{#if chosenArtistIndex !== data.artists.length - 1}
+				<h1 class="mb-2 w-32 text-center">Upcomming</h1>
+			{:else}
+				<div />
+			{/if}
+		</div>
+		<div class="w-full flex flex-row items-center justify-between mb-10">
+			{#if chosenArtistIndex === 0}
+				<div class="flex flex-col items-center justify-center w-20">
+					<h1 class="text-white text-xl font-semibold">
+						{format(Date.parse(data.event.start_time), 'HH:mm')}
+					</h1>
+					<h1 class="text-base text-lime-400">Start</h1>
+				</div>
+			{:else}
+				<div
+					class="flex flex-col items-center justify-center bg-zinc-900 rounded-xl drop-shadow-lg h-32 w-32"
+				>
+					<BigArtistBubble
+						artist={data.artists[chosenArtistIndex - 1]}
+						changeChosenArtist={() => changeChosenArtist(data.artists[chosenArtistIndex - 1])}
+					/>
+					<h1 class="mt-2">
+						{data.artists[chosenArtistIndex - 1].artist_name}
+					</h1>
+				</div>
+			{/if}
+
+			{#if chosenArtistIndex === data.artists.length - 1}
+				<div class="flex flex-col items-center justify-center w-20">
+					<h1 class="text-white text-xl font-semibold">
+						{format(Date.parse(data.event.end_time), 'HH:mm')}
+					</h1>
+					<h1 class="text-base text-red-600">End</h1>
+				</div>
+			{:else}
+				<div
+					class="flex flex-col items-center justify-center bg-zinc-900 rounded-xl drop-shadow-lg h-32 w-32"
+				>
+					<BigArtistBubble
+						changeChosenArtist={() => changeChosenArtist(data.artists[chosenArtistIndex + 1])}
+						artist={data.artists[chosenArtistIndex + 1]}
+					/>
+					<h1 class="mt-2">
+						{data.artists[chosenArtistIndex + 1].artist_name}
+					</h1>
+				</div>
+			{/if}
 		</div>
 	</div>
 </div>
