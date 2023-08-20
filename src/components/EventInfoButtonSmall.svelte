@@ -1,5 +1,4 @@
 <script lang="ts">
-	export let text: string;
 	export let icon: string;
 	export let link: string;
 

@@ -19,7 +19,6 @@
 	function changeChosenArtist(artist: ArtistType) {
 		chosenArtist = artist;
 		chosenArtistIndex = data.artists.indexOf(artist);
-		console.log(chosenArtistIndex);
 	}
 
 	function goBack() {
