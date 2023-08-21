@@ -4,7 +4,7 @@
 	export let spotifyLink: string;
 
 	function handleClick() {
-		if (spotifyLink != null && spotifyLink != undefined) {
+		if (spotifyLink != null && spotifyLink != undefined && spotifyLink !== '') {
 			window.open(spotifyLink, '_blank');
 		}
 	}

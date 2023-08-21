@@ -3,7 +3,9 @@
 	export let link: string;
 
 	function handleClick() {
-		window.open(link, '_blank');
+		if (link !== null && link !== undefined && link !== '') {
+			window.open(link, '_blank');
+		}
 	}
 </script>
 

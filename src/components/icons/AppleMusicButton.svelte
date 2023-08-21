@@ -6,7 +6,7 @@
 	export let appleMusicLink: string;
 
 	function handleClick() {
-		if (appleMusicLink != null && appleMusicLink != undefined) {
+		if (appleMusicLink != null && appleMusicLink != undefined && appleMusicLink !== '') {
 			window.open(appleMusicLink, '_blank');
 		}
 	}

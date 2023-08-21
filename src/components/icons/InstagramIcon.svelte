@@ -2,7 +2,7 @@
 	export let instagramLink: string;
 
 	function handleClick() {
-		if (instagramLink != null && instagramLink != undefined) {
+		if (instagramLink != null && instagramLink != undefined && instagramLink !== '') {
 			window.open(instagramLink, '_blank');
 		}
 	}

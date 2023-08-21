@@ -3,17 +3,12 @@
 	import type { PageData } from './$types';
 	import ArtistBubbles from '../../components/ArtistBubbles.svelte';
 	import EventInfoButtonSmall from '../../components/EventInfoButtonSmall.svelte';
-	import ReloadIcon from '../../components/icons/ReloadIcon.svelte';
 
 	export let data: PageData;
 
 	let lineupBig = true;
 
 	const startDate = Date.parse(data.event.start_time);
-
-	function changeLineupSize() {
-		lineupBig = !lineupBig;
-	}
 </script>
 
 <svelte:head>
