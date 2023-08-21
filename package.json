@@ -26,10 +26,12 @@
 		"prettier-plugin-svelte": "^2.10.1",
 		"svelte": "^4.2.0",
 		"svelte-check": "^3.5.0",
+		"sveltekit-superforms": "^1.6.0",
 		"tailwindcss": "^3.3.3",
 		"tslib": "^2.6.1",
 		"typescript": "^5.1.6",
-		"vite": "^4.4.9"
+		"vite": "^4.4.9",
+		"zod": "^3.22.2"
 	},
 	"type": "module",
 	"dependencies": {
@@ -38,6 +40,7 @@
 		"@vercel/analytics": "^1.0.2",
 		"daisyui": "^3.5.1",
 		"date-fns": "^2.30.0",
-		"pixi.js": "^7.2.4"
+		"pixi.js": "^7.2.4",
+		"svelty-picker": "^4.0.9"
 	}
 }

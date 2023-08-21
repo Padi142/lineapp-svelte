@@ -17,6 +17,10 @@
 	function goToEventDetail(eventId: string) {
 		goto('/dashboard/' + eventId);
 	}
+
+	function goToEventCreate() {
+		goto('/dashboard/create');
+	}
 </script>
 
 <div class="w-full h-full flex flex-col items-center justify-center p-2">
@@ -25,15 +29,17 @@
 
 		<ProfileIcon user={profile} {goToLogin} {goToDashboard} />
 	</div>
-	<div class="desktop:w-1/3 w-full h-full flex flex-col items-center justify-center p-6">
-		<h1 class="text-2xl text-center text-shite font-semibold">Dashboard</h1>
-		<div class="grid grid-cols-2 gap-2 h-full w-full">
+	<div class="desktop:w-1/3 w-full h-full flex flex-col items-center justify-center p-2">
+		<h1 class="text-2xl text-center text-shite font-semibold">Events</h1>
+		<div
+			class="grid grid-cols-2 gap-2 max-h-96 w-full overflow-visible overflow-y-scroll mt-2 px-2 py-4"
+		>
 			{#each data.events as event}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<div
 					on:click={() => goToEventDetail(event.event_uid)}
-					class="flex flex-col items-center justifycenter bg-zinc-900 hover:bg-zinc-950 rounded-xl hover:scale-105 transition duration-300 ease-in-out"
+					class="flex flex-col h-40 items-center justify-start bg-zinc-900 hover:bg-zinc-950 rounded-xl hover:scale-105 transition duration-300 ease-in-out"
 				>
 					<img
 						class="object-cover h-32 w-full rounded-t-xl"
@@ -45,6 +51,14 @@
 					</h1>
 				</div>
 			{/each}
+		</div>
+		<div class="w-full flex -tems-center justify-center mt-10">
+			<button
+				on:click={goToEventCreate}
+				class="btn bg-gradient-to-r from-indigo-500 to-pink-500 hover:underline text-white font-semibold"
+			>
+				Create Event
+			</button>
 		</div>
 	</div>
 </div>

@@ -7,6 +7,10 @@
 	function goBack() {
 		goto('/dashboard');
 	}
+
+	function goToLineup() {
+		goto('/' + data.event.event_uid);
+	}
 </script>
 
 <div class="w-full h-full flex flex-col items-center justify-center">
@@ -17,5 +21,13 @@
 		<h1 class="text-white text-2xl font-semibold">
 			{data.event.event_name}
 		</h1>
+		<div class="w-full flex -tems-center justify-center mt-10">
+			<button
+				on:click={goToLineup}
+				class="btn bg-gradient-to-r from-indigo-500 to-pink-500 hover:underline text-white font-semibold"
+			>
+				Go to lineup url
+			</button>
+		</div>
 	</div>
 </div>
