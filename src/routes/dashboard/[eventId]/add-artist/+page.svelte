@@ -22,7 +22,9 @@
 			<BackButton on:click={goBack} />
 		</div>
 		<form method="POST" class="flex flex-col w-full">
-			<label for="artist_name" class="block mb-2 text-md font-medium font-white">Artist Name </label>
+			<label for="artist_name" class="block mb-2 text-md font-medium font-white"
+				>Artist Name
+			</label>
 			<input
 				type="text"
 				class="block p-2.5 w-full text-sm rounded-lg border text-center bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
@@ -57,7 +59,7 @@
 
 					<SveltyPicker
 						inputClasses="form-control w-1/2"
-						format="hh:ii"
+						format="yyyy-mm-dd hh:ii"
 						bind:value={$form.start_time}
 					>
 						<svelte:fragment
@@ -87,7 +89,7 @@
 					<label for="start_date" class="block mb-2 text-sm font-medium font-white">Start </label>
 					<SveltyPicker
 						inputClasses="form-control w-1/2"
-						format="hh:ii"
+						format="yyyy-mm-dd hh:ii"
 						bind:value={$form.end_time}
 					>
 						<svelte:fragment

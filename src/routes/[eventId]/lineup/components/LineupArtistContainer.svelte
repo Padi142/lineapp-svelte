@@ -5,6 +5,7 @@
 	export let artist: ArtistType;
 
 	export let changeChosenArtist: Function;
+	console.log(artist)
 
 	const startDate = Date.parse(artist.start_time);
 </script>
