@@ -93,11 +93,11 @@
 				>When is the event starting and ending?
 			</label>
 			<div class="w-full flex flex-row items-center justify-center">
-				<div class="flex flex-col">
+				<div class="flex flex-col w-full">
 					<label for="start_date" class="block mb-2 text-sm font-medium font-white">Start </label>
 
 					<SveltyPicker
-						inputClasses="form-control w-1/2"
+						inputClasses="form-control w-full"
 						format="yyyy-mm-dd hh:ii"
 						bind:value={$form.start_time}
 					>
@@ -124,7 +124,7 @@
 					{/if}
 				</div>
 
-				<div class="flex flex-col">
+				<div class="flex flex-col w-full">
 					<label for="start_date" class="block mb-2 text-sm font-medium font-white">Start </label>
 					<SveltyPicker
 						inputClasses="form-control w-1/2"
@@ -158,7 +158,7 @@
 				>Your socials?
 			</label>
 			<div class="w-full flex flex-row items-center justify-center">
-				<div class="flex flex-col">
+				<div class="flex flex-col w-full">
 					<label for="website_link" class="block mb-2 text-sm font-medium font-white"
 						>Website
 					</label>
@@ -170,7 +170,7 @@
 						bind:value={$form.website_link}
 					/>
 				</div>
-				<div class="flex flex-col">
+				<div class="flex flex-col w-full">
 					<label for="instagram_link" class="block mb-2 text-sm font-medium font-white"
 						>Instagram
 					</label>
