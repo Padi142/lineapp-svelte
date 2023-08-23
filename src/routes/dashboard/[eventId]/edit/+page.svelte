@@ -14,10 +14,9 @@
 
 	const { form, errors } = superForm(data.form);
 
-
-	async function uploadArtistPhoto() {
+	async function uploadEventLogo() {
 		uploading = true;
-		const result = await uploadAvatar('artist-photos', data.eventId, files, data.supabase);
+		const result = await uploadAvatar('event-logos', data.event.event_uid, files, data.supabase);
 
 		if (result !== undefined) {
 			form.update((currentForm) => ({
@@ -28,13 +27,11 @@
 		uploading = false;
 	}
 
-
 	function goBack() {
-		goto('/dashboard/' + data.eventId);
+		goto('/dashboard');
 	}
 </script>
 
-<!-- <SuperDebug data={$form} /> -->
 <div class="w-full h-full flex flex-col items-center justify-center">
 	<div class="desktop:w-1/3 w-full h-full flex flex-col items-center justify-center p-6">
 		<div class="w-full mb-4">
@@ -42,58 +39,58 @@
 		</div>
 		<form method="POST" class="flex flex-col w-full">
 			<label for="name" class="block mb-2 text-md font-medium font-white"
-				>Artist photo!
+				>Logo for your event!
 			</label>
 			<div class="flex flex-col desktop:w-full items-center justify-center">
 				<img
 					class="h-auto object-cover desktop:max-w-lg w-56 rounded-lg drop-shadow-xl"
-					src={$form.artist_photo}
-					alt={$form.artist_name}
+					src={$form.event_logo}
+					alt={data.event.event_name}
 				/>
 				<label class="btn btn-primary mt-2 w-32" for="event_logo_btn">
 					{uploading ? 'Uploading ...' : 'Change logo'}
 				</label>
-				<input type="text" class="hidden w-0 h-0" name="artist_photo" bind:value={$form.artist_photo} />
+				<input type="text" class="hidden w-0 h-0" name="event_logo" bind:value={$form.event_logo} />
 				<input
 					class="hidden"
 					type="file"
 					id="event_logo_btn"
 					accept="image/*"
 					bind:files
-					on:change={uploadArtistPhoto}
+					on:change={uploadEventLogo}
 					disabled={uploading}
 				/>
 			</div>
-			<label for="artist_name" class="block mb-2 text-md font-medium font-white"
-				>Artist Name
+			<label for="name" class="block mb-2 text-md font-medium font-white mt-2"
+				>Name your awesome event!
 			</label>
 			<input
 				type="text"
 				class="block p-2.5 w-full text-sm rounded-lg border text-center bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-				name="artist_name"
-				placeholder="Name..."
-				bind:value={$form.artist_name}
+				name="event_name"
+				placeholder="Like '✨Supa-awesome-mega-party✨' "
+				bind:value={$form.event_name}
 			/>
-			{#if $errors.artist_name}
-				<small>{$errors.artist_name}</small>
+			{#if $errors.event_name}
+				<small>{$errors.event_name}</small>
 			{/if}
 
-			<label for="description" class="block mb-2 text-md font-medium font-white"
-				>Artist description
+			<label for="description" class="block mb-2 text-md font-medium font-white mt-2"
+				>What do you want people to know?
 			</label>
 			<textarea
 				rows="6"
 				name="description"
 				class="block p-2.5 w-full text-sm rounded-lg border text-center bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
 				bind:value={$form.description}
-				placeholder="What will they play ? 🥰"
+				placeholder="What is the party going to be like ? 🥰🥳"
 			/>
 			{#if $errors.description}
 				<small>{$errors.description}</small>
 			{/if}
 
-			<label for="start_date" class="block mb-2 text-md font-medium font-white"
-				>What time do they play?
+			<label for="start_date" class="block mb-2 text-md font-medium font-white mt-2"
+				>When is the event starting and ending?
 			</label>
 			<div class="w-full flex flex-row items-center justify-center">
 				<div class="flex flex-col">
@@ -158,19 +155,19 @@
 				</div>
 			</div>
 			<label for="start_date" class="block mb-2 text-md font-medium font-white mt-8"
-				>Their socials?
+				>Your socials?
 			</label>
 			<div class="w-full flex flex-row items-center justify-center">
 				<div class="flex flex-col">
-					<label for="spotify_link" class="block mb-2 text-sm font-medium font-white"
-						>Spotify
+					<label for="website_link" class="block mb-2 text-sm font-medium font-white"
+						>Website
 					</label>
 					<input
 						type="text"
 						class="block p-2.5 w-full text-sm rounded-lg border text-center mr-2 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-						name="spotify_link"
-						placeholder="https://open.spotify.com/artist/..."
-						bind:value={$form.spotify_link}
+						name="website_link"
+						placeholder="www.awesome-event.com/"
+						bind:value={$form.website_link}
 					/>
 				</div>
 				<div class="flex flex-col">
@@ -186,22 +183,23 @@
 					/>
 				</div>
 			</div>
-			<div class="flex flex-col mt-8">
-				<label for="artist_photo" class="block mb-2 text-md font-medium font-white"
-					>Artist image</label
-				>
-				<input
-					type="text"
-					class="block p-2.5 w-full text-sm rounded-lg border text-center bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-					name="artist_photo"
-					placeholder="https://ynodkuxldoumbyyocxqt.supabase.co/storage/v1/..."
-					bind:value={$form.artist_photo}
-				/>
+			<div class="w-full flex flex-row items-center justify-start mt-2">
+				<div class="flex flex-col w-full">
+					<label for="tickets_link" class="block mb-2 text-sm font-medium font-white"
+						>Tickets url
+					</label>
+					<input
+						type="text"
+						class="block p-2.5 w-1/2 text-sm rounded-lg border text-center mr-2 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+						name="tickets_link"
+						placeholder="www.goout.net/myEvent"
+						bind:value={$form.tickets_link}
+					/>
+				</div>
 			</div>
-
 			<div class="w-full flex -tems-center justify-center mt-10">
 				<button class="btn bg-indigo-500 hover:underline text-white font-semibold">
-					Create Artist
+					Save changes
 				</button>
 			</div>
 		</form>

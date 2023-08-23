@@ -5,10 +5,10 @@ export interface EventType {
 	event_logo: string;
 	start_time: string;
 	end_time: string;
-	tickets_url: string;
+	tickets_link: string;
 	creator_uid: string;
 	event_uid: string;
 	description: string;
-	event_instagram: string;
-	event_website: string;
+	instagram_link: string;
+	website_link: string;
 }

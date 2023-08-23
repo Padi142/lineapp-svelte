@@ -66,11 +66,11 @@
 					<div class="flex flex-row w-full items-center justify-center desktop:m-2 m-6 mt-8">
 						<EventInfoButtonSmall
 							icon="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-white-glyph-900x900.png"
-							link={data.event.event_instagram}
+							link={data.event.instagram_link}
 						/>
 						<EventInfoButtonSmall
 							icon="https://icon-library.com/images/ticket-icon-png/ticket-icon-png-12.jpg"
-							link={data.event.tickets_url}
+							link={data.event.tickets_link}
 						/>
 					</div>
 				</div>
@@ -78,11 +78,11 @@
 				<div class="flex flex-row w-full items-center justify-center my-2 mt-2">
 					<EventInfoButtonSmall
 						icon="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-white-glyph-900x900.png"
-						link={data.event.event_instagram}
+						link={data.event.instagram_link}
 					/>
 					<EventInfoButtonSmall
 						icon="https://icon-library.com/images/ticket-icon-png/ticket-icon-png-12.jpg"
-						link={data.event.tickets_url}
+						link={data.event.tickets_link}
 					/>
 					<ArtistBubbles artists={data.artists} isBig={lineupBig} eventId={data.event.event_uid} />
 				</div>

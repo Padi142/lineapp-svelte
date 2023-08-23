@@ -15,7 +15,7 @@ const schema = z.object({
 	end_time: z.string(),
 	spotify_link: z.string(),
 	instagram_link: z.string(),
-	artist_photo: z.string()
+	artist_photo: z.string().default(PUBLIC_DEFAULT_EVENT_PHOTO)
 });
 
 export const load = async ({ locals: { supabase, getSession }, params }) => {
@@ -45,8 +45,7 @@ export const actions = {
 				event_uid: eventId,
 				spotify_link: form.data.spotify_link,
 				instagram_link: form.data.instagram_link,
-				artist_photo:
-					form.data.artist_photo === '' ? PUBLIC_DEFAULT_EVENT_PHOTO : form.data.artist_photo
+				artist_photo: form.data.artist_photo
 			});
 
 			const res = await fetch(API_URL + 'artists', {
