@@ -3,9 +3,8 @@
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
 	import SveltyPicker from 'svelty-picker';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
-	import BackButton from '../../../../components/icons/BackButton.svelte';
-	import { uploadAvatar } from '../../../../functions/upload';
+	import { uploadAvatar } from '../../../../../../functions/upload';
+	import BackButton from '../../../../../../components/icons/BackButton.svelte';
 
 	export let data: PageData;
 
@@ -16,7 +15,7 @@
 
 	async function uploadArtistPhoto() {
 		uploading = true;
-		const result = await uploadAvatar('artist-photos', data.eventId, files, data.supabase);
+		const result = await uploadAvatar('artist-photos', data.event.event_uid, files, data.supabase);
 
 		if (result !== undefined) {
 			form.update((currentForm) => ({
@@ -28,7 +27,7 @@
 	}
 
 	function goBack() {
-		goto('/dashboard/' + data.eventId);
+		goto('/dashboard/' + data.event.event_uid + '/artist/' + data.artist.artist_uid);
 	}
 </script>
 
@@ -84,13 +83,13 @@
 			</label>
 			<textarea
 				rows="6"
-				name="description"
+				name="artist_description"
 				class="block p-2.5 w-full text-sm rounded-lg border text-center bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-				bind:value={$form.description}
+				bind:value={$form.artist_description}
 				placeholder="What will they play ? 🥰"
 			/>
-			{#if $errors.description}
-				<small>{$errors.description}</small>
+			{#if $errors.artist_description}
+				<small>{$errors.artist_description}</small>
 			{/if}
 
 			<label for="start_date" class="block mb-2 text-md font-medium font-white"
@@ -187,23 +186,22 @@
 					/>
 				</div>
 			</div>
-			<div class="flex flex-col mt-8">
-				<label for="artist_photo" class="block mb-2 text-md font-medium font-white"
-					>Artist image</label
-				>
-				<input
-					type="text"
-					class="block p-2.5 w-full text-sm rounded-lg border text-center bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-					name="artist_photo"
-					placeholder="https://ynodkuxldoumbyyocxqt.supabase.co/storage/v1/..."
-					bind:value={$form.artist_photo}
-				/>
+			<div class="w-full flex flex-row items-center justify-start mt-2">
+				<div class="flex flex-col w-full">
+					<label for="apple_link" class="block mb-2 text-sm font-medium font-white"
+						>Apple music
+					</label>
+					<input
+						type="text"
+						class="block p-2.5 w-1/2 text-sm rounded-lg border text-center mr-2 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+						name="apple_link"
+						placeholder="https://music.apple.com/..."
+						bind:value={$form.apple_link}
+					/>
+				</div>
 			</div>
-
 			<div class="w-full flex -tems-center justify-center mt-10">
-				<button class="btn bg-indigo-500 hover:underline text-white font-semibold">
-					Create Artist
-				</button>
+				<button class="btn bg-indigo-500 hover:underline text-white font-semibold"> Update </button>
 			</div>
 		</form>
 	</div>

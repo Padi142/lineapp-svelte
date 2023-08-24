@@ -1,4 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { format } from 'date-fns';
 
 export const uploadAvatar = async (
 	bucket: string,
@@ -13,7 +14,7 @@ export const uploadAvatar = async (
 
 		const file = files[0];
 		const fileExt = file.name.split('.').pop();
-		const filePath = `${path}/${Math.random()}.${fileExt}`;
+		const filePath = `${path}/${format(Date.now(), 'dd_MM_yyyy-HH_mm')}.${fileExt}`;
 
 		let { error } = await supabase.storage.from(bucket).upload(filePath, file);
 

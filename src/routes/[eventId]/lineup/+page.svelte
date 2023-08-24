@@ -73,7 +73,7 @@
 				</h1>
 			</div>
 			<div
-				class="flex flex-col desktop:w-full w-lg items-center justify-center bg-zinc-900 rounded-md shadow-xl p-2 mt-4"
+				class="flex flex-col w-full items-center justify-center bg-zinc-900 rounded-md shadow-xl p-2 mt-4"
 			>
 				<h class="text-center text-sm w-full" style="white-space: pre-line">
 					{chosenArtist.artist_description}
