@@ -21,7 +21,7 @@
 		if (result !== undefined) {
 			form.update((currentForm) => ({
 				...currentForm,
-				event_logo: result
+				artist_photo: result
 			}));
 		}
 		uploading = false;
@@ -186,18 +186,6 @@
 						bind:value={$form.instagram_link}
 					/>
 				</div>
-			</div>
-			<div class="flex flex-col mt-8">
-				<label for="artist_photo" class="block mb-2 text-md font-medium font-white"
-					>Artist image</label
-				>
-				<input
-					type="text"
-					class="block p-2.5 w-full text-sm rounded-lg border text-center bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-					name="artist_photo"
-					placeholder="https://ynodkuxldoumbyyocxqt.supabase.co/storage/v1/..."
-					bind:value={$form.artist_photo}
-				/>
 			</div>
 
 			<div class="w-full flex -tems-center justify-center mt-10">
