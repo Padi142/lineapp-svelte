@@ -102,7 +102,7 @@
 
 					<SveltyPicker
 						inputClasses="form-control w-1/2"
-						format="yyyy-mm-dd hh:ii"
+						format="hh:ii"
 						bind:value={$form.start_time}
 					>
 						<svelte:fragment
@@ -129,10 +129,10 @@
 				</div>
 
 				<div class="flex flex-col">
-					<label for="start_date" class="block mb-2 text-sm font-medium font-white">Start </label>
+					<label for="start_date" class="block mb-2 text-sm font-medium font-white">End </label>
 					<SveltyPicker
 						inputClasses="form-control w-1/2"
-						format="yyyy-mm-dd hh:ii"
+						format="hh:ii"
 						bind:value={$form.end_time}
 					>
 						<svelte:fragment
