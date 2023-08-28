@@ -8,7 +8,7 @@ import { PUBLIC_DEFAULT_EVENT_PHOTO } from '$env/static/public';
 import request from '../../../../functions/request';
 import type { ArtistType } from '../../../../types/artist_type';
 import type { EventType } from '../../../../types/event_type';
-import format from 'date-fns/format';
+import { format } from 'date-fns';
 import { parseTimeToDateTime } from '../../../../functions/parse_hour';
 
 const schema = z.object({

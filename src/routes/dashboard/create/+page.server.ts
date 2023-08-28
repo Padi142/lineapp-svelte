@@ -31,7 +31,6 @@ export const load = async ({ locals: { supabase, getSession } }) => {
 export const actions = {
 	default: async ({ request }) => {
 		const form = await superValidate(request, schema);
-		console.log(form);
 		if (!form.valid) {
 			return fail(400, { form });
 		} else {

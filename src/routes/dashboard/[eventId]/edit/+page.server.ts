@@ -46,8 +46,6 @@ export const actions = {
 		if (!form.valid) {
 			return fail(400, { form });
 		} else {
-			console.log(form.data);
-
 			const body = JSON.stringify({
 				event_name: form.data.event_name,
 				description: form.data.description,

@@ -55,8 +55,6 @@ export const actions = {
 		if (!form.valid) {
 			return fail(400, { form });
 		} else {
-			console.log(form.data);
-
 			const body = JSON.stringify({
 				artist_name: form.data.artist_name,
 				artist_description: form.data.artist_description,
