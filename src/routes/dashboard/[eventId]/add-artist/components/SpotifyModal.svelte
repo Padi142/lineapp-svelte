@@ -45,34 +45,35 @@
 			bind:value={query}
 			on:input={() => searchSpotifyArtists(query)}
 		/>
-		{#each searchArtists as artist}
-			<div class="w-full flex flex-row items-center justify-between bg-slate-900 m-2">
-				<div class="flex flex-row">
-					<div class="avatar mb-1">
-						<div class="w-16 rounded">
-							{#if artist.artist_photos.length !== 0}
-								<img src={artist.artist_photos[0].url} alt={artist.artist_name} />
-							{:else}
-								<img src={PUBLIC_DEFAULT_EVENT_PHOTO} alt={artist.artist_name} />
-							{/if}
+		<div class="w-full h-96 overflow-y-scroll p-2">
+			{#each searchArtists as artist}
+				<div class="w-full flex flex-row items-center justify-between bg-slate-900 m-2">
+					<div class="flex flex-row">
+						<div class="avatar mb-1">
+							<div class="w-16 rounded">
+								{#if artist.artist_photos.length !== 0}
+									<img src={artist.artist_photos[0].url} alt={artist.artist_name} />
+								{:else}
+									<img src={PUBLIC_DEFAULT_EVENT_PHOTO} alt={artist.artist_name} />
+								{/if}
+							</div>
 						</div>
+						<h1 class="font-semibold ml-2">
+							{artist.artist_name}
+						</h1>
 					</div>
-					<h1 class="font-semibold ml-2">
-						{artist.artist_name}
-					</h1>
+					<button
+						class="btn btn-primary text-gray-50 font-semibold mr-2"
+						on:click={() => {
+							dialog.close();
+							onPickedArtist(artist);
+						}}
+					>
+						Add
+					</button>
 				</div>
-				<button
-					class="btn btn-primary text-gray-50 font-semibold"
-					on:click={() => {
-						dialog.close();
-						onPickedArtist(artist);
-					}}
-				>
-					Add
-				</button>
-			</div>
-		{/each}
-
+			{/each}
+		</div>
 		<button on:click={() => dialog.close()} class="btn mt-8">Close</button>
 	</div>
 </dialog>
