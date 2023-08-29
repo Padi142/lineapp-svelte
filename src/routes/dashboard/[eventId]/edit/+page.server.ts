@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { superValidate } from 'sveltekit-superforms/server';
 import { fail, redirect } from '@sveltejs/kit';
-import { API_URL } from '$env/static/private';
+import { PUBLIC_API_URL } from '$env/static/public';
 import type { Session, SupabaseClient } from '@supabase/supabase-js';
 import { PUBLIC_DEFAULT_EVENT_PHOTO } from '$env/static/public';
 import type { UserProfileType } from '../../../../types/user_profile_type';
@@ -35,7 +35,7 @@ export const load = async ({ locals: { supabase, getSession }, params }) => {
 };
 
 const fetchEvent = async (eventId: string): Promise<EventType> => {
-	const result = await request<{ event: EventType }>(API_URL + 'event/' + eventId);
+	const result = await request<{ event: EventType }>(PUBLIC_API_URL + 'event/' + eventId);
 
 	return result.event;
 };
@@ -58,7 +58,7 @@ export const actions = {
 				event_uid: params.eventId
 			});
 
-			const res = await fetch(API_URL + 'event', {
+			const res = await fetch(PUBLIC_API_URL + 'event', {
 				method: 'PUT',
 				body: body,
 				headers: {

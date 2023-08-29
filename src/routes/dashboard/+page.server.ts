@@ -1,4 +1,4 @@
-import { API_URL } from '$env/static/private';
+import { PUBLIC_API_URL } from '$env/static/public';
 import type { Session, SupabaseClient } from '@supabase/supabase-js';
 import request from '../../functions/request';
 import type { EventType } from '../../types/event_type';
@@ -22,7 +22,9 @@ export const load = (async ({ locals: { supabase, getSession } }) => {
 }) satisfies PageServerLoad;
 
 const fetchEvents = async (userId: string): Promise<Array<EventType>> => {
-	const result = await request<{ events: Array<EventType> }>(API_URL + 'event/user/' + userId);
+	const result = await request<{ events: Array<EventType> }>(
+		PUBLIC_API_URL + 'event/user/' + userId
+	);
 	return result.events;
 };
 

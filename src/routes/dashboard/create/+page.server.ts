@@ -1,10 +1,9 @@
 import { z } from 'zod';
 import { superValidate } from 'sveltekit-superforms/server';
 import { fail, redirect } from '@sveltejs/kit';
-import { API_URL } from '$env/static/private';
 import type { Session, SupabaseClient } from '@supabase/supabase-js';
 import type { UserProfileType } from '../../../types/user_profile_type';
-import { PUBLIC_DEFAULT_EVENT_PHOTO } from '$env/static/public';
+import { PUBLIC_API_URL, PUBLIC_DEFAULT_EVENT_PHOTO } from '$env/static/public';
 
 const schema = z.object({
 	event_name: z.string(),
@@ -43,7 +42,7 @@ export const actions = {
 				event_logo: form.data.event_logo
 			});
 
-			const res = await fetch(API_URL + 'event', {
+			const res = await fetch(PUBLIC_API_URL + 'event', {
 				method: 'POST',
 				body: body,
 				headers: {

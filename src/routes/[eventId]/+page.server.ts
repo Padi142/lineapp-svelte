@@ -1,4 +1,4 @@
-import { API_URL } from '$env/static/private';
+import { PUBLIC_API_URL } from '$env/static/public';
 import request from '../../functions/request';
 import { shuffleArtists } from '../../functions/shuffle';
 import type { ArtistType } from '../../types/artist_type';
@@ -13,14 +13,14 @@ export const load = (async ({ params }) => {
 }) satisfies PageServerLoad;
 
 const fetchEvent = async (eventId: string): Promise<EventType> => {
-	const result = await request<{ event: EventType }>(API_URL + 'event/' + eventId);
+	const result = await request<{ event: EventType }>(PUBLIC_API_URL + 'event/' + eventId);
 
 	return result.event;
 };
 
 const fetchLineup = async (eventId: string): Promise<Array<ArtistType>> => {
 	const result = await request<{ artists: Array<ArtistType> }>(
-		API_URL + 'event/artists/' + eventId
+		PUBLIC_API_URL + 'event/artists/' + eventId
 	);
 
 	return shuffleArtists(result.artists);

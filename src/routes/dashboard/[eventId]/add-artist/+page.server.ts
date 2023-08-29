@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { superValidate } from 'sveltekit-superforms/server';
 import { fail, redirect } from '@sveltejs/kit';
-import { API_URL } from '$env/static/private';
+import { PUBLIC_API_URL } from '$env/static/public';
 import type { Session, SupabaseClient } from '@supabase/supabase-js';
 import type { UserProfileType } from '../../../../types/user_profile_type';
 import { PUBLIC_DEFAULT_EVENT_PHOTO } from '$env/static/public';
@@ -53,14 +53,14 @@ export const load = async ({ locals: { supabase, getSession }, params }) => {
 };
 
 const fetchEvent = async (eventId: string): Promise<EventType> => {
-	const result = await request<{ event: EventType }>(API_URL + 'event/' + eventId);
+	const result = await request<{ event: EventType }>(PUBLIC_API_URL + 'event/' + eventId);
 
 	return result.event;
 };
 
 const fetchLineup = async (eventId: string): Promise<Array<ArtistType>> => {
 	const result = await request<{ artists: Array<ArtistType> }>(
-		API_URL + 'event/artists/' + eventId
+		PUBLIC_API_URL + 'event/artists/' + eventId
 	);
 
 	return result.artists;
@@ -109,7 +109,7 @@ export const actions = {
 				artist_photo: form.data.artist_photo
 			});
 
-			const res = await fetch(API_URL + 'artists', {
+			const res = await fetch(PUBLIC_API_URL + 'artists', {
 				method: 'POST',
 				body: body,
 				headers: {

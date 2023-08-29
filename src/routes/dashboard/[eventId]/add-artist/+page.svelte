@@ -6,11 +6,16 @@
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import BackButton from '../../../../components/icons/BackButton.svelte';
 	import { uploadAvatar } from '../../../../functions/upload';
+	import SpotifyIcon from '../../../../assets/spotify-icon.svelte';
+	import SpotifyModal from './components/SpotifyModal.svelte';
+	import type { SpotifyArtistType } from '../../../../types/spotify_search_artist';
 
 	export let data: PageData;
 
 	let uploading = false;
 	let files: FileList;
+
+	let showModal = false;
 
 	const { form, errors } = superForm(data.form);
 
@@ -30,16 +35,41 @@
 	function goBack() {
 		goto('/dashboard/' + data.eventId);
 	}
+
+	function showSpotifyModal() {
+		showModal = !showModal;
+	}
+
+	function onPickArtist(artist: SpotifyArtistType) {
+		form.update((currentForm) => ({
+			...currentForm,
+			artist_name: artist.artist_name,
+			spotify_link: artist.artist_url,
+			artist_photo:
+				artist.artist_photos.length !== 0 ? artist.artist_photos[0].url : currentForm.artist_photo
+		}));
+	}
 </script>
 
 <!-- <SuperDebug data={$form} /> -->
 <div class="w-full h-full flex flex-col items-center justify-center">
+	<SpotifyModal bind:showModal onPickedArtist={onPickArtist}/>
 	<div class="desktop:w-1/3 w-full h-full flex flex-col items-center justify-center p-6">
-		<div class="w-full mb-4">
+		<div class="w-full mb-4 flex flex-row items-center justify-between">
 			<BackButton on:click={goBack} />
+			<button class="btn bg-[#1DB954] text-gray-50 font-semibold" on:click={showSpotifyModal}>
+				<div class="flex flex-row items-center">
+					<div class="w-6 mr-2">
+						<SpotifyIcon />
+					</div>
+					<h1>Search</h1>
+				</div>
+			</button>
 		</div>
 		<form method="POST" class="flex flex-col w-full">
-			<label for="name" class="block mb-2 text-md font-medium font-white">Artist photo! </label>
+			<div class="w-full flex flex-row items-center justify-between">
+				<h1 class="block mb-2 text-md font-medium font-white">Artist photo!</h1>
+			</div>
 			<div class="flex flex-col desktop:w-full items-center justify-center">
 				<img
 					class="h-auto object-cover desktop:max-w-lg w-56 rounded-lg drop-shadow-xl"

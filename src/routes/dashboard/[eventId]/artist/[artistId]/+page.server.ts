@@ -1,4 +1,4 @@
-import { API_URL } from '$env/static/private';
+import { PUBLIC_API_URL } from '$env/static/public';
 import { redirect } from '@sveltejs/kit';
 import request from '../../../../../functions/request';
 import type { ArtistType } from '../../../../../types/artist_type';
@@ -12,7 +12,7 @@ export const load = (async ({ params }) => {
 }) satisfies PageServerLoad;
 
 const fetchArtist = async (artistId: string): Promise<ArtistType> => {
-	const result = await request<{ artist: ArtistType }>(API_URL + 'artists/' + artistId);
+	const result = await request<{ artist: ArtistType }>(PUBLIC_API_URL + 'artists/' + artistId);
 
 	return result.artist;
 };
@@ -24,8 +24,8 @@ export const actions = {
 		const data = await request.formData();
 		const artist_uid = data.get('artist_uid')?.toString().trim();
 
-		// const res = await fetch(API_URL + 'artists/' + artist_uid+'?event_uid='+params.eventId+"&user_uid=" +session?.user.aud, {
-		const res = await fetch(API_URL + 'artists/' + artist_uid, {
+		// const res = await fetch(PUBLIC_API_URL + 'artists/' + artist_uid+'?event_uid='+params.eventId+"&user_uid=" +session?.user.aud, {
+		const res = await fetch(PUBLIC_API_URL + 'artists/' + artist_uid, {
 			method: 'DELETE'
 		});
 		// const response = (await res.json()) as { error: string; success: boolean };

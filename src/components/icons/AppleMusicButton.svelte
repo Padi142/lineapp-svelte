@@ -1,7 +1,5 @@
 <script lang="ts">
-	import AppleLogo from '../../assets/apple-logo.svelte';
 	import ApplemusicIcon from '../../assets/applemusic-icon.svelte';
-	import SpotifyIcon from '../../assets/spotify-icon.svelte';
 
 	export let appleMusicLink: string;
 
