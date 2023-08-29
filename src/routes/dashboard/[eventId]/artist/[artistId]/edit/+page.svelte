@@ -31,7 +31,6 @@
 	}
 </script>
 
-<!-- <SuperDebug data={$form} /> -->
 <div class="w-full h-full flex flex-col items-center justify-center">
 	<div class="desktop:w-1/3 w-full h-full flex flex-col items-center justify-center p-6">
 		<div class="w-full mb-4">

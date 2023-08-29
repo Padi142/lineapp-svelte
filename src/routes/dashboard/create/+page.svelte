@@ -4,7 +4,6 @@
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
 	import SveltyPicker from 'svelty-picker';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	export let data: PageData;
 
@@ -20,7 +19,6 @@
 	}
 </script>
 
-<SuperDebug data={$form} />
 <div class="w-full h-full flex flex-col items-center justify-center">
 	<div class="desktop:w-1/3 w-full h-full flex flex-col items-center justify-center p-6">
 		<div class="w-full mb-4">

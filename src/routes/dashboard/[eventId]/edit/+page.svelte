@@ -3,7 +3,6 @@
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
 	import SveltyPicker from 'svelty-picker';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import BackButton from '../../../../components/icons/BackButton.svelte';
 	import { uploadAvatar } from '../../../../functions/upload';
 
