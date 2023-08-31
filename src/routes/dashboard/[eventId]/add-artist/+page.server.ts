@@ -13,7 +13,7 @@ import { parseTimeToDateTime } from '../../../../functions/parse_hour';
 
 const schema = z.object({
 	artist_name: z.string(),
-	description: z.string(),
+	artist_description: z.string(),
 	start_time: z.string(),
 	end_time: z.string(),
 	spotify_link: z.string(),
@@ -100,7 +100,7 @@ export const actions = {
 
 			const body = JSON.stringify({
 				artist_name: form.data.artist_name,
-				artist_description: form.data.description,
+				artist_description: form.data.artist_description,
 				start_time: format(startTime, 'yyyy-MM-dd hh:mm'),
 				end_time: format(endTime, 'yyyy-MM-dd hh:mm'),
 				event_uid: eventId,

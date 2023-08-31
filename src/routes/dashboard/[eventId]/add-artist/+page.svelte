@@ -107,18 +107,18 @@
 				<small>{$errors.artist_name}</small>
 			{/if}
 
-			<label for="description" class="block mb-2 text-md font-medium font-white"
+			<label for="artist_description" class="block mb-2 text-md font-medium font-white"
 				>Artist description
 			</label>
 			<textarea
 				rows="6"
-				name="description"
+				name="artist_description"
 				class="block p-2.5 w-full text-sm rounded-lg border text-center bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-				bind:value={$form.description}
+				bind:value={$form.artist_description}
 				placeholder="What will they play ? 🥰"
 			/>
-			{#if $errors.description}
-				<small>{$errors.description}</small>
+			{#if $errors.artist_description}
+				<small>{$errors.artist_description}</small>
 			{/if}
 
 			<label for="start_date" class="block mb-2 text-md font-medium font-white"
