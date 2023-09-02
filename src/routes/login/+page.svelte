@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import BackButton from '../../components/icons/BackButton.svelte';
+	import LoginForm from './components/LoginForm.svelte';
 
 	function goBack() {
 		goto('/');
@@ -8,21 +9,6 @@
 
 	export let data;
 
-	async function signInWithDiscord() {
-		const { error } = await data.supabase.auth.signInWithOAuth({
-			provider: 'discord'
-		});
-	}
-	async function signInWithGoogle() {
-		const { error } = await data.supabase.auth.signInWithOAuth({
-			provider: 'google'
-		});
-	}
-	async function signInWithSpotify() {
-		const { error } = await data.supabase.auth.signInWithOAuth({
-			provider: 'spotify'
-		});
-	}
 	async function logOut() {
 		goto('/logout');
 	}
@@ -41,23 +27,7 @@
 					>Log Out</button
 				>
 			{:else}
-				<div class="w-full flex flex-col items-center justify-center mt-12">
-					<h1 class="text-center text-white text-xl">
-						Use any of our providers to register/log in!
-					</h1>
-				</div>
-				<button
-					on:click={signInWithDiscord}
-					class="btn w-52 bg-[#7289da] text-gray-50 font-extrabold mt-10">Discord</button
-				>
-				<button
-					on:click={signInWithGoogle}
-					class="btn w-52 bg-[#4285F4] text-gray-50 font-extrabold mt-10">Google</button
-				>
-				<button
-					on:click={signInWithSpotify}
-					class="btn w-52 bg-[#1DB954] text-gray-50 font-extrabold mt-10">Spotify</button
-				>
+				<LoginForm {data} />
 			{/if}
 		</div>
 	</div>

@@ -22,7 +22,6 @@
 		const result = await request<{ artists: Array<SpotifyArtistType> }>(
 			PUBLIC_API_URL + 'spotify/search?query=' + query
 		);
-		console.log(result.artists[0]);
 		searchArtists = result.artists;
 	};
 </script>
