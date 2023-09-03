@@ -46,7 +46,7 @@
 						src={event.event_logo}
 						alt={event.event_name}
 					/>
-					<h1 class="m-1 text-center">
+					<h1 class="m-1 text-center text-ellipsis overflow-y-hidden">
 						{event.event_name}
 					</h1>
 				</div>
