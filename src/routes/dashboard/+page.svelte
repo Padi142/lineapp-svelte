@@ -32,7 +32,7 @@
 	<div class="desktop:w-1/3 w-full h-full flex flex-col items-center justify-center p-2">
 		<h1 class="text-2xl text-center text-shite font-semibold">Events</h1>
 		<div
-			class="grid grid-cols-2 gap-2 max-h-96 w-full overflow-visible overflow-y-scroll mt-2 px-2 py-4"
+			class="grid grid-cols-2 gap-2 h-2/3 w-full overflow-visible overflow-y-scroll mt-2 px-2 py-4"
 		>
 			{#each data.events as event}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->

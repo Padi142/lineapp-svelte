@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import BackButton from '../../components/icons/BackButton.svelte';
 	import LoginForm from './components/LoginForm.svelte';
+	import UserProfile from './components/UserProfile.svelte';
 
 	function goBack() {
 		goto('/');
@@ -12,6 +13,10 @@
 	async function logOut() {
 		goto('/logout');
 	}
+
+	async function goToDashboard() {
+		goto('/dashboard');
+	}
 </script>
 
 <div class="w-full h-full flex flex-col items-center justify-center">
@@ -21,9 +26,12 @@
 		</div>
 
 		<div class="w-full flex flex-col items-center justify-center mt-10">
-			{#if data.session !== null}
-				<h1 class="text-white mb-6">{data.session.user.email}</h1>
-				<button on:click={logOut} class="btn w-18 bg-indigo-500 text-gray-50 font-extrabold"
+			{#if data.profile !== undefined}
+				<UserProfile user={data.profile} />
+				<button on:click={goToDashboard} class="btn btn-primary font-extrabold mt-48"
+					>Dashboard</button
+				>
+				<button on:click={logOut} class="btn w-18 bg-indigo-500 text-gray-50 font-extrabold mt-6"
 					>Log Out</button
 				>
 			{:else}
